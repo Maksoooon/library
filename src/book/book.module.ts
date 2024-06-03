@@ -16,4 +16,4 @@ import { Book } from './book.entity';
   controllers: [BookController],
   providers: [BookService],
 })
-export class AppModule {}
+export class BookModule {}

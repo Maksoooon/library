@@ -15,7 +15,7 @@ export class User extends BaseEntity {
     @Column({ type: 'varchar'})
     last_name: string;
 
-    @Column({ type: 'int64'})
+    @Column({ type: 'int'})
     student_number: number;
 
     @Column({ type: 'varchar'})

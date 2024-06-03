@@ -11,7 +11,7 @@ export class Book extends BaseEntity {
     @Column({ type: 'varchar'})
     book_author: string;
 
-    @Column({ type: 'int64'})
+    @Column({ type: 'int'})
     book_year: number;
 
     @Column("text", {nullable: true})
