@@ -8,8 +8,5 @@ export class BookDto {
     @Trim()
     public readonly book_year: number;
 
-    @Trim()
-    public readonly book_type: string;
-
     public readonly file: Express.Multer.File;
 }

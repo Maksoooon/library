@@ -43,7 +43,7 @@ export class BookController {
   }
 
   @Get("all")
-  getBooks(@Query("type") type?: string) {
+  getBooks() {
     return this.bookService.getBooks();
   }
 
@@ -52,7 +52,7 @@ export class BookController {
     return this.bookService.getBook(id);
   }
 
-  @Get("download")
+  @Get("download/:name")
   async getBookFile(@Query("name") name: string, @Res() res: Response) {
     const file = await createReadStream(join(process.cwd(), `./books/${name}`));
     file.pipe(res);
