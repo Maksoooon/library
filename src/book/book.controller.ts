@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Query,
   Request,
@@ -26,7 +27,7 @@ export class BookController {
 
   @Post("create")
   @UseInterceptors(
-    FilesInterceptor("files", 1, {
+    FilesInterceptor("file", 2, {
       dest: "./books",
       storage: diskStorage({
         destination: "./books",
@@ -39,7 +40,8 @@ export class BookController {
       }),
     })
   )
-  createBook(@Body() body: BookDto, @Request() req) {
+  createBook(@Body() body: any, @Request() req) {
+    console.log('tete')
     return this.bookService.createBook(body, req.files[0], req.files[1]);
   }
 
@@ -48,14 +50,16 @@ export class BookController {
     return this.bookService.getBooks();
   }
 
-  @Get(":id")
+  @Get(":id/")
   getBook(@Query("id") id: string) {
+    console.log('3');
     return this.bookService.getBook(id);
   }
 
-  @Get("download/:name")
-  async getBookFile(@Query("name") name: string, @Res() res: Response) {
-    const file = await createReadStream(join(process.cwd(), `./books/${name}`));
+  @Post("get")
+  async getBookFile(@Body() body: any, @Res() res: Response) {
+    console.log('4');
+    const file = await createReadStream(join(process.cwd(), `./books/${body.name}`));
     file.pipe(res);
   }
 }

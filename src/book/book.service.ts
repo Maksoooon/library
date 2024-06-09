@@ -9,7 +9,7 @@ export class BookService {
     book.book_name = body.book_name;
     book.book_year = body.book_year;
     book.image = file.originalname || null;
-    book.book_link = link;
+    book.book_link = link.originalname;
     await book.save();
     return {
       book
