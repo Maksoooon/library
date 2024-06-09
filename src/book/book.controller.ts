@@ -4,6 +4,7 @@ import {
   Get,
   Post,
   Query,
+  Request,
   Res,
   UploadedFile,
   UploadedFiles,
@@ -25,7 +26,7 @@ export class BookController {
 
   @Post("create")
   @UseInterceptors(
-    FilesInterceptor("file", 1, {
+    FilesInterceptor("files", 1, {
       dest: "./books",
       storage: diskStorage({
         destination: "./books",
@@ -38,8 +39,8 @@ export class BookController {
       }),
     })
   )
-  createBook(@Body() body: BookDto, @UploadedFile() file) {
-    return this.bookService.createBook(body, file);
+  createBook(@Body() body: BookDto, @Request() req) {
+    return this.bookService.createBook(body, req.files[0], req.files[1]);
   }
 
   @Get("all")

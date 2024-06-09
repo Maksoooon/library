@@ -16,4 +16,7 @@ export class Book extends BaseEntity {
 
     @Column("text", {nullable: true})
     image?: string;
+
+    @Column("text", {nullable: true})
+    book_link: string
 }
